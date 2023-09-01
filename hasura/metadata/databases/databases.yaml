@@ -1,0 +1,9 @@
+- name: sunday-bot-db
+  kind: postgres
+  configuration:
+    connection_info:
+      database_url:
+        from_env: PG_DATABASE_URL5
+      isolation_level: read-committed
+      use_prepared_statements: false
+  tables: "!include sunday-bot-db/tables/tables.yaml"

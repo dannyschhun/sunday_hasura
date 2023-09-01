@@ -1,0 +1,37 @@
+{
+  "name": "sunday_hasura",
+  "version": "1.0.0",
+  "description": "Hasura database for Sunday bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dcu": "cd ./hasura && docker-compose up -d && cd ..",
+    "dcd": "cd ./hasura && docker-compose down && docker volume rm sunday_bot_db_data && cd ..",
+    "metadata:diff": "cd ./hasura && hasura metadata diff && cd ..",
+    "metadata:update": "cd ./hasura && hasura metadata export && cd ..",
+    "metadata:apply": "cd ./hasura && hasura metadata apply && npm run metadata:reload && cd ..",
+    "metadata:reload": "cd ./hasura && hasura metadata reload && cd ..",
+    "metadata:list": "cd ./hasura && hasura metadata inconsistency list && cd ..",
+    "metadata:status": "cd ./hasura && hasura metadata inconsistency status && cd ..",
+    "migrate:all": "cd ./hasura && hasura migrate apply --all-databases && cd ..",
+    "migrate:one": "cd ./hasura && hasura migrate apply --up 1 --all-databases && cd ..",
+    "migrate:skip": "cd ./hasura && hasura migrate apply --up 1 --skip-execution && cd ..",
+    "rollback:all": "cd ./hasura && hasura migrate apply --down && cd ..",
+    "rollback:one": "cd ./hasura && hasura migrate apply --down 1 && cd ..",
+    "list:ic": "cd ./hasura && hasura metadata ic list && cd ..",
+    "seed": "cd ./hasura && hasura seeds apply && cd ..",
+    "setup": "npm run metadata:apply && npm run migrate:all && npm run metadata:reload",
+    "postinstall": "husky install"
+  },
+  "keywords": [
+    "sunday",
+    "hasura",
+    "database"
+  ],
+  "author": "Danny Chhun",
+  "license": "ISC",
+  "dependencies": {
+    "hasura-cli": "^2.33.0"
+  }
+}
