@@ -1,0 +1,6 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- CREATE TABLE public.onww_roles (
+--     role Text NOT NULL PRIMARY KEY,
+--     max_num_role Integer
+-- );
